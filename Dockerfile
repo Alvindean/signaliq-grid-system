@@ -14,5 +14,6 @@ RUN cd server && npm ci --omit=dev
 COPY server ./server
 COPY --from=client-build /app/client/dist ./client/dist
 WORKDIR /app/server
+RUN mkdir -p /app/server/data
 EXPOSE 3000
 CMD ["node", "index.js"]
