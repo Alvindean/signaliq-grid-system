@@ -1,0 +1,33 @@
+# dependencies
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# logs
+*.log
+npm-debug.log*
+
+# env
+.env
+server/.env
+client/.env
+
+# build outputs
+client/dist/
+server/dist/
+
+# runtime data
+server/data/*.db
+server/data/*.db-*
+
+# misc
+.DS_Store
+
+# upload snapshots (duplicate of project)
+signaliq-grid-system-upload/
+signaliq-grid-system-upload.tar.gz
+
+# runtime artifacts
+server/*.db
+server/*.db-*
+server/*.pid

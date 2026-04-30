@@ -1,0 +1,39 @@
+Render Environment Checklist
+
+Required for app/auth:
+JWT_SECRET=<generate a long random value>
+ADMIN_EMAIL=thealvindean@gmail.com
+PORT=3000
+NODE_ENV=production
+SERVE_STATIC=true
+
+Required after Render gives you a live URL:
+APP_ORIGIN=https://<your-render-or-custom-domain>
+PUBLIC_APP_URL=https://<your-render-or-custom-domain>
+API_PUBLIC_URL=https://<your-render-or-custom-domain>
+GOOGLE_REDIRECT_URI=https://<your-render-or-custom-domain>/api/google/callback
+
+Required for live sending/tracking:
+RESEND_API_KEY=<your current Resend API key>
+RESEND_WEBHOOK_SECRET=<your current Resend webhook secret>
+RESEND_WEBHOOK_KEY=<fallback random key, optional if signed webhook works>
+CAMPAIGN_REPLY_TO=thealvindean@gmail.com
+SENDING_FROM=SignalIQ <onboarding@resend.dev>
+
+Required for conversion tracking:
+CRM_WEBHOOK_KEY=crm_wh_a83efeda1510d56cba
+
+Required for Google Workspace:
+GOOGLE_CLIENT_ID=<your Google client id>
+GOOGLE_CLIENT_SECRET=<your Google client secret>
+
+Optional for paid launch:
+STRIPE_SECRET_KEY=
+STRIPE_WEBHOOK_SECRET=
+STRIPE_PRO_MONTHLY_PRICE_ID=
+STRIPE_TEAM_MONTHLY_PRICE_ID=
+
+Post-deploy provider URLs:
+Resend webhook: https://<your-render-or-custom-domain>/api/webhooks/resend
+CRM conversion webhook: https://<your-render-or-custom-domain>/api/webhooks/conversions?key=<CRM_WEBHOOK_KEY>
+Google OAuth redirect: https://<your-render-or-custom-domain>/api/google/callback

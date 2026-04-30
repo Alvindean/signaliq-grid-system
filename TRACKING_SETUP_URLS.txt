@@ -1,0 +1,25 @@
+SignalIQ Tracking Setup URLs
+
+Local Resend webhook URL:
+http://localhost:3000/api/webhooks/resend
+
+Local Resend webhook URL with fallback key:
+http://localhost:3000/api/webhooks/resend?key=78047ae74745958e3f83befd12117a09ace21d8976f8d01d
+
+Resend webhook signing secret in server/.env:
+RESEND_WEBHOOK_SECRET=whsec_RjA5HcAvJDUaJEDN1S6NY6wPO8XLGcgM
+
+CRM conversion webhook URL:
+http://localhost:3000/api/webhooks/conversions?key=crm_wh_a83efeda1510d56cba
+
+Google OAuth redirect URI:
+http://localhost:3000/api/google/callback
+
+Recommended branded sender after Resend domain verification:
+SENDING_FROM="SignalIQ <hello@axistms.com>"
+
+Current reply inbox:
+CAMPAIGN_REPLY_TO="thealvindean@gmail.com"
+
+Live sending requirement:
+Set RESEND_API_KEY in server/.env or configure SMTP_USER/SMTP_PASS. Without one of those, campaign launches run in simulation mode.

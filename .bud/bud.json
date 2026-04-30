@@ -1,0 +1,5 @@
+{
+  "startupCommands": [
+    "cd /home/user/computer/signaliq-grid-system/client && npm install && npm run build; cd /home/user/computer/signaliq-grid-system/server && npm install && mkdir -p data && node index.js"
+  ]
+}
