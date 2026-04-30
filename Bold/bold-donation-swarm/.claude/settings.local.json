@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(bash \"C:/Users/alvin/OneDrive/Desktop/Bold/bold-donation-swarm/scripts/validate-outputs.sh\" --stage all)",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --yes)"
+    ]
+  }
+}

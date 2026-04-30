@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SONIQ — Market Analysis & Valuation Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --s0:#060608;--s1:#0c0c10;--s2:#111116;--s3:#18181f;--s4:#1f1f28;--s5:#272733;
+  --b1:rgba(255,255,255,0.05);--b2:rgba(255,255,255,0.09);--b3:rgba(255,255,255,0.15);
+  --tx1:#eeeef4;--tx2:#8888a8;--tx3:#50506a;
+  --amber:#f5b800;--cyan:#00d4b8;--violet:#9b87f5;--red:#f56060;--green:#3dd68c;
+  --font:'Space Grotesk',sans-serif;--mono:'Space Mono',monospace;
+}
+html{background:var(--s0);color:var(--tx1);font-family:var(--font);font-size:15px;line-height:1.7;scroll-behavior:smooth}
+body{max-width:860px;margin:0 auto;padding:0 24px 80px}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--s5);border-radius:2px}
+
+/* ── COVER ── */
+.cover{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:60px 0}
+.cover-brand{font-size:56px;font-weight:700;letter-spacing:0.02em;line-height:1}
+.cover-brand span{color:var(--amber)}
+.cover-sub{font-size:22px;color:var(--amber);font-weight:500;margin-top:6px}
+.cover-hr{width:50%;height:2px;background:var(--amber);margin:24px 0;border:none}
+.cover-doc{font-size:16px;color:var(--tx2);margin-bottom:48px}
+
+.metrics-row{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:60px}
+.metric-card{background:var(--s3);border:1px solid var(--b2);border-radius:12px;padding:20px 28px;text-align:center;flex:1;min-width:160px}
+.metric-val{font-size:32px;font-weight:700;line-height:1.2}
+.metric-val.amber{color:var(--amber)}
+.metric-val.cyan{color:var(--cyan)}
+.metric-val.green{color:var(--green)}
+.metric-lbl{font-size:11px;color:var(--tx3);text-transform:uppercase;letter-spacing:0.08em;margin-top:4px}
+
+.cover-footer{font-size:12px;color:var(--tx3);line-height:1.8}
+
+/* ── NAV / TOC ── */
+.toc{background:var(--s2);border:1px solid var(--b2);border-radius:14px;padding:28px 32px;margin-bottom:48px}
+.toc h2{font-size:20px;color:var(--amber);margin-bottom:16px;font-weight:700}
+.toc a{display:block;color:var(--tx2);font-size:14px;padding:6px 0;text-decoration:none;border-bottom:1px solid var(--b1);transition:color 0.15s}
+.toc a:hover{color:var(--amber)}
+.toc a:last-child{border-bottom:none}
+
+/* ── SECTIONS ── */
+.section{margin-bottom:56px}
+h1.section-title{font-size:28px;font-weight:700;color:var(--amber);margin-bottom:6px;padding-top:24px}
+.section-divider{width:100%;height:1px;background:var(--b2);margin-bottom:20px}
+h2.sub-title{font-size:18px;font-weight:700;color:var(--cyan);margin:24px 0 12px}
+p{color:var(--tx2);margin-bottom:12px;text-align:justify}
+p strong,.highlight{color:var(--tx1)}
+.amber{color:var(--amber)}
+.cyan{color:var(--cyan)}
+.green{color:var(--green)}
+.red{color:var(--red)}
+.violet{color:var(--violet)}
+
+/* ── TABLES ── */
+table{width:100%;border-collapse:separate;border-spacing:0;margin:16px 0 20px;border-radius:10px;overflow:hidden;border:1px solid var(--b2)}
+thead th{background:var(--s4);color:var(--amber);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;padding:10px 14px;text-align:left}
+tbody td{background:var(--s3);color:var(--tx2);font-size:13px;padding:10px 14px;border-top:1px solid var(--b1)}
+tbody td strong{color:var(--tx1)}
+tbody tr:hover td{background:var(--s4)}
+
+/* ── HIGHLIGHT BOXES ── */
+.callout{background:var(--s2);border:1px solid var(--b2);border-radius:10px;padding:16px 20px;margin:16px 0}
+.callout-title{font-size:13px;font-weight:700;margin-bottom:8px}
+.callout p{font-size:13px;margin-bottom:8px}
+.callout p:last-child{margin-bottom:0}
+
+/* ── BULLET ITEMS ── */
+.item{margin-bottom:10px}
+.item .label{font-weight:700;color:var(--amber)}
+.item.cyan-item .label{color:var(--cyan)}
+.item.green-item .label{color:var(--green)}
+.item.violet-item .label{color:var(--violet)}
+.item.red-item .label{color:var(--red)}
+
+.bullet-list{margin:8px 0 16px}
+.bullet-list .b{padding:6px 0;color:var(--tx2);font-size:14px;display:flex;gap:8px}
+.bullet-list .b::before{content:'';flex-shrink:0;width:6px;height:6px;border-radius:50%;margin-top:8px}
+.bullet-list.amber .b::before{background:var(--amber)}
+.bullet-list.cyan .b::before{background:var(--cyan)}
+.bullet-list.green .b::before{background:var(--green)}
+.bullet-list.violet .b::before{background:var(--violet)}
+
+/* ── CLOSING ── */
+.closing{text-align:center;padding:48px 0;border-top:1px solid var(--b2);margin-top:48px}
+.closing-main{font-size:18px;font-weight:700;color:var(--tx1);margin-bottom:10px}
+.closing-sub{font-size:14px;color:var(--tx2);max-width:600px;margin:0 auto}
+.disclaimer{font-size:10px;color:var(--tx3);text-align:center;margin-top:48px;line-height:1.7;max-width:700px;margin-left:auto;margin-right:auto}
+
+/* ── SCENARIO HIGHLIGHT ── */
+.scenario-row{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0}
+.scenario{flex:1;min-width:200px;background:var(--s3);border:1px solid var(--b2);border-radius:10px;padding:16px;text-align:center}
+.scenario-name{font-size:11px;color:var(--tx3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px}
+.scenario-val{font-size:28px;font-weight:700}
+.scenario-detail{font-size:11px;color:var(--tx3);margin-top:4px}
+
+@media(max-width:600px){
+  .cover-brand{font-size:36px}
+  .metrics-row{flex-direction:column}
+  .scenario-row{flex-direction:column}
+  h1.section-title{font-size:22px}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ COVER ═══════════ -->
+<div class="cover">
+  <div class="cover-brand"><span>SON</span>IQ</div>
+  <div class="cover-sub">AI Music Creative Suite</div>
+  <hr class="cover-hr">
+  <div class="cover-doc">Market Analysis & Valuation Report</div>
+
+  <div class="metrics-row">
+    <div class="metric-card">
+      <div class="metric-val amber">$2.9B</div>
+      <div class="metric-lbl">AI Music Market 2025</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-val cyan">30.5%</div>
+      <div class="metric-lbl">Market CAGR 2025-2030</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-val green">$60B+</div>
+      <div class="metric-lbl">Projected Market 2034</div>
+    </div>
+  </div>
+
+  <div class="cover-footer">
+    Prepared March 2026 &nbsp;|&nbsp; Confidential<br>
+    SONIQ v12 &nbsp;|&nbsp; 23 Genres &middot; Campaign Mode &middot; Album Engine &middot; Rap Lab &nbsp;|&nbsp; Vercel + Supabase + OpenRouter
+  </div>
+</div>
+
+<!-- ═══════════ TABLE OF CONTENTS ═══════════ -->
+<div class="toc">
+  <h2>Contents</h2>
+  <a href="#s1">1. Executive Summary</a>
+  <a href="#s2">2. Market Opportunity</a>
+  <a href="#s3">3. Competitive Landscape</a>
+  <a href="#s4">4. SONIQ Product Analysis</a>
+  <a href="#s5">5. Revenue Model & Pricing Strategy</a>
+  <a href="#s6">6. Technical Architecture & Moat</a>
+  <a href="#s7">7. Growth Strategy & Roadmap</a>
+  <a href="#s8">8. Risk Factors</a>
+  <a href="#s9">9. Valuation Framework</a>
+  <a href="#s10">10. Conclusion & Investment Thesis</a>
+</div>
+
+<!-- ═══════════ 1. EXECUTIVE SUMMARY ═══════════ -->
+<div class="section" id="s1">
+  <h1 class="section-title">1. Executive Summary</h1>
+  <div class="section-divider"></div>
+
+  <p>SONIQ is a full-stack AI music creative suite that goes far beyond simple lyric generation. From a single text prompt, SONIQ produces complete songs with lyrics, production briefs, chord progressions, structure maps, dopamine analysis, song scoring, title suggestions, mood boards, visual direction, and sync licensing notes — across <strong>23 genres</strong>, <strong>21 song structures</strong>, <strong>25 vocal styles</strong>, and <strong>18 mood dimensions</strong>. Built on a serverless stack (Vercel + Supabase + OpenRouter/Claude), SONIQ also includes a Campaign Mode for multi-song project planning and an Album Engine for full LP/EP creative direction — features no competitor offers.</p>
+
+  <p>The global generative AI in music market is valued at approximately <strong>$2.9 billion in 2025</strong> and is projected to reach <strong>$60+ billion by 2034</strong>, growing at a compound annual growth rate (CAGR) of <strong>27.8–30.5%</strong>. SONIQ is positioned to capture a meaningful share of this rapidly expanding market through its differentiated approach — not just as a songwriting tool, but as the creative intelligence layer that sits upstream of every audio generation platform.</p>
+
+  <h2 class="sub-title">Key Investment Highlights</h2>
+
+  <div class="item"><span class="label">Massive Market:</span> The AI music market is growing at 28–30% CAGR, with the broader AI music ecosystem projected to exceed $60 billion by 2034. This is one of the fastest-growing segments in consumer AI.</div>
+
+  <div class="item"><span class="label">Proven Demand:</span> Competitor Suno raised $250M at a $2.45B valuation in November 2025, generating $200M in annual revenue from subscriptions alone — validating massive consumer demand for AI song creation.</div>
+
+  <div class="item"><span class="label">Product Depth Beyond Any Competitor:</span> 23 genres (including untapped niches like Children's, Comedy, Parody, TV/Musical), a Rap Lab with 6 creative dimensions, genre blending with adjustable ratios, 12 musical scales/modes, era targeting, Suno-optimized bracket formatting, and a Genre Fusion Matrix with quality prediction. No other product in the market offers this level of creative control.</div>
+
+  <div class="item"><span class="label">Professional Workflow Tools:</span> Campaign Mode generates multi-song project briefs with platform targeting (Suno/Udio). The Album Engine produces full LP concepts with track maps, sonic palettes, visual branding, and gap analysis. These features target a higher-paying professional tier ($19–49/mo).</div>
+
+  <div class="item"><span class="label">Capital-Efficient Stack:</span> SONIQ runs on Vercel serverless + Supabase with zero GPU costs. By routing inference through OpenRouter, SONIQ eliminates the need for costly model training and infrastructure.</div>
+
+  <div class="item"><span class="label">Monetization-Ready:</span> Tiered pricing (Free / Pro $9/mo / Studio $19/mo) with Stripe integration on the roadmap. Usage metering and auth are already built. The feature depth now justifies a higher-priced Professional tier at $29–49/mo.</div>
+</div>
+
+<!-- ═══════════ 2. MARKET OPPORTUNITY ═══════════ -->
+<div class="section" id="s2">
+  <h1 class="section-title">2. Market Opportunity</h1>
+  <div class="section-divider"></div>
+
+  <h2 class="sub-title">2.1 Total Addressable Market (TAM)</h2>
+  <p>The AI music generation market sits at the intersection of several converging megatrends: the creator economy, generative AI adoption, and the democratization of music production. Multiple research firms confirm the explosive growth trajectory:</p>
+
+  <table>
+    <thead>
+      <tr><th>Metric</th><th>Value</th><th>Source</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>AI Music Market (2025)</td><td><strong>$6.65B</strong></td><td>Market.us</td></tr>
+      <tr><td>Generative AI in Music (2025)</td><td><strong>$2.93B</strong></td><td>MRFR</td></tr>
+      <tr><td>Projected Market (2030)</td><td><strong>$2.79B</strong></td><td>Grand View Research</td></tr>
+      <tr><td>Projected Market (2034)</td><td><strong>$60.44B</strong></td><td>Market.us</td></tr>
+      <tr><td>CAGR (2025–2034)</td><td><strong class="green">27.8 – 30.5%</strong></td><td>Multiple sources</td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="sub-title">2.2 Serviceable Market Segments</h2>
+
+  <div class="item"><span class="label">Content Creators & Social Media (SAM: ~$1.2B):</span> Over 200 million content creators worldwide need original music for TikTok, YouTube, Instagram Reels, and podcasts. AI songwriting tools eliminate licensing headaches and per-track costs.</div>
+
+  <div class="item"><span class="label">Independent Musicians & Songwriters (~$800M):</span> 60% of musicians are already using AI for music creation. Indie artists use tools like SONIQ to overcome writer's block, explore genres, and accelerate their creative process.</div>
+
+  <div class="item"><span class="label">Music Producers & Studios (~$600M):</span> Professional producers use AI-generated lyrics and structure maps as starting points, dramatically cutting pre-production time.</div>
+
+  <div class="item"><span class="label">Brands, Agencies & Sync Licensing (~$400M):</span> Brands need custom music for ads, campaigns, and events. AI songwriting enables rapid iteration on briefs without expensive session musicians.</div>
+</div>
+
+<!-- ═══════════ 3. COMPETITIVE LANDSCAPE ═══════════ -->
+<div class="section" id="s3">
+  <h1 class="section-title">3. Competitive Landscape</h1>
+  <div class="section-divider"></div>
+
+  <p>The AI music generation space has seen explosive growth in 2024–2025, with several well-funded players establishing market presence. Here is how the key competitors stack up:</p>
+
+  <table>
+    <thead>
+      <tr><th>Company</th><th>Valuation / Funding</th><th>Core Product</th><th>Key Limitation</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Suno</strong></td>
+        <td>$2.45B valuation<br>$250M Series C<br>$200M ARR</td>
+        <td>End-to-end audio generation from text prompts</td>
+        <td>Major label lawsuits; relies on proprietary audio model (massive GPU cost)</td>
+      </tr>
+      <tr>
+        <td><strong>Udio</strong></td>
+        <td>Undisclosed (settling with labels)</td>
+        <td>High-fidelity music generation with vocal realism</td>
+        <td>Licensing battles; pivoting to label partnerships; limited creative control</td>
+      </tr>
+      <tr>
+        <td><strong>Boomy</strong></td>
+        <td>~$18M raised</td>
+        <td>Simple music generation + direct distribution to streaming platforms</td>
+        <td>Low quality ceiling; limited customization; Spotify removed tracks in 2023</td>
+      </tr>
+      <tr>
+        <td><strong>Soundraw</strong></td>
+        <td>~$2M raised</td>
+        <td>Royalty-free AI background music for video/content creators</td>
+        <td>No lyrics; focused on background music only; limited creative depth</td>
+      </tr>
+      <tr>
+        <td><strong>AIVA</strong></td>
+        <td>Private</td>
+        <td>Classical and cinematic composition AI</td>
+        <td>Niche genre focus; no lyrics; no modern genre support</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 class="sub-title">3.1 SONIQ's Competitive Positioning</h2>
+  <p>SONIQ occupies a distinct and defensible position in the market. While Suno, Udio, and Boomy compete on audio generation (requiring massive GPU infrastructure and facing copyright lawsuits from major labels), SONIQ focuses on the creative intelligence layer: songwriting, lyricism, structure, and compositional design.</p>
+
+  <p>This positioning is strategic for three reasons:</p>
+
+  <div class="item cyan-item"><span class="label">1. Upstream in the value chain:</span> Lyrics and song structure are the creative inputs that all downstream audio models need. SONIQ can integrate with any audio generation platform rather than competing with them.</div>
+
+  <div class="item cyan-item"><span class="label">2. Zero copyright risk:</span> AI-generated lyrics and song structures face no copyright exposure from existing music catalogs, unlike audio models trained on copyrighted recordings.</div>
+
+  <div class="item cyan-item"><span class="label">3. Capital efficient:</span> No GPU clusters, no model training costs. SONIQ leverages frontier LLMs (Claude) via API, meaning R&D spend goes into product, not infrastructure.</div>
+</div>
+
+<!-- ═══════════ 4. PRODUCT ANALYSIS ═══════════ -->
+<div class="section" id="s4">
+  <h1 class="section-title">4. SONIQ Product Analysis</h1>
+  <div class="section-divider"></div>
+
+  <p>SONIQ v12 has evolved into a comprehensive AI music creative suite with <strong>10 distinct modules</strong>, far exceeding any competitor in creative depth. The March 2026 update added significant new capabilities across every dimension of the platform:</p>
+
+  <h2 class="sub-title">4.1 Core Creative Engine (Updated)</h2>
+
+  <div class="item"><span class="label">Write Studio (23 Genres):</span> Users enter a topic (with voice input and AI concept rewriting), select from 23 genres — including 5 new categories: Neo-Soul, Gospel, Children's, Parody, Comedy, and TV/Musical. The mood system was overhauled to a multi-select pill interface with 18 moods (adding Playful, Longing, Transcendent, Devastated, Tender, Triumphant, Bittersweet). Vocal styles expanded from 9 to 25 (adding Falsetto, Deep Baritone, Gospel Belter, Auto-Tune/Melodic Trap, ASMR, Operatic, and more). Song structures grew from 8 to 21, including TikTok/Viral, Beat Switch, and 5 hip-hop-specific structures. Output now includes Song Scoring, Chord progressions, Mood boards, Visual direction, and Sync licensing notes.</div>
+
+  <div class="item"><span class="label">Rap Lab (New):</span> An entirely new subsystem for fine-tuning rap across 6 creative dimensions: Flow (Syncopated, On-Beat, Triplet, Double-Time, Conversational, Behind-Beat), Rhyme (End Only, Internal, Multi-Syllabic, Chain, Mosaic, Slant), Density (Sparse to Ultra-Dense 13+/bar), Vocab (Street-Coded, Conscious, Abstract, Minimal, Academic), and Persona (First Person, Character, Omniscient, Second Person, Collective We). No competitor has anything comparable.</div>
+
+  <div class="item"><span class="label">Advanced Settings Panel (New):</span> Era targeting (Classic pre-1980 through Current 2023–Now), Suno bracket formatting with 5 levels (including "Suno Optimized"), Harmony Level (Standard/Adventurous/Avant-garde), Scale/Mode selection (12 scales from Major through Chromatic), 12 Hook Styles, and Artist Voice settings (name, lyric influences, forbidden clichés). This is professional-grade creative control.</div>
+
+  <h2 class="sub-title">4.2 Professional Workflow Tools (New)</h2>
+
+  <div class="item"><span class="label">Campaign Mode (New):</span> Generates 2–4 complete song concepts simultaneously with a unified theme/artist brief, genre selection, mood range, and platform targeting (Suno AI, Udio, Both, or General). Each concept includes full lyrics, production brief, and platform-optimized prompts. This transforms SONIQ from a single-song tool into a project planning platform.</div>
+
+  <div class="item"><span class="label">Album Engine (New):</span> Full album-level creative planning with 5 album types (Full LP 12-track, EP 6-track, Mini 8-track, Debut 11-track, Concept 10-track). Generates album concept, track map, sonic palette, visual branding direction, recurring motifs, and a Gap Map that identifies missing track roles. Commercial lane targeting includes Mainstream Streaming, Crossover Radio, Critical Acclaim, Sync Licensing, Virality, and Artist Brand Building. Includes "Write All Tracks" for one-click full album generation.</div>
+
+  <div class="item"><span class="label">Song Prompt Builder (New):</span> A visual production prompt builder with BPM slider (tempo control), key instrument selection, energy levels (ASMR to Explosive), 12 production textures, era targeting, and tested Suno vocal descriptors. Generates ready-to-paste prompts with a 440-character counter optimized for Suno/Udio input limits.</div>
+
+  <h2 class="sub-title">4.3 Analysis & Intelligence Tools (New)</h2>
+
+  <div class="item"><span class="label">Song Structure Analyzer:</span> Deep-dive analysis of any genre's structure patterns, psychology, and lyric patterns — available in Full, Structure Only, Psychology & Neuroscience, or Lyric Patterns focus modes.</div>
+
+  <div class="item"><span class="label">Hit Song Formula:</span> "10 Universal Laws of Hit Songs" — distilled songwriting principles with genre-specific Blueprint Builder for creating structural templates.</div>
+
+  <div class="item"><span class="label">Genre Fusion Matrix:</span> Visual matrix showing fusion quality between any two genres with color-coded quality prediction. Click any cell for formula breakdown, then generate a song from that fusion directly.</div>
+
+  <div class="item"><span class="label">Rate Any Song:</span> Analyze and score any existing song (by title, artist, or pasted lyrics) with genre auto-detection.</div>
+
+  <h2 class="sub-title">4.4 Existing Core (Enhanced)</h2>
+
+  <div class="item"><span class="label">Genre Blending Engine:</span> Now supports all 23 genres for blending, plus 14 writing style influences (added Soul, Funk, Lo-Fi, Folk World). Fusion preview shows real-time blend descriptions.</div>
+
+  <div class="item"><span class="label">Feel Lucky Mode:</span> Enhanced with Genre Zone pinning — users can limit the random pool to specific genres or leave empty for full random. Session history tracks all surprise generations.</div>
+
+  <div class="item"><span class="label">Library:</span> Currently holds 16 songs with active usage through March 29, 2026. Full search, delete, and load-to-editor functionality.</div>
+
+  <div class="item"><span class="label">Lyric Editor:</span> Live syllable counter with color-coded line analysis (6–10 ideal for chorus, 11–13 for verse, 14+ warning for AI drift). Paste Lyrics import for external content.</div>
+
+  <div class="item"><span class="label">Quick Edit & Variations:</span> Instant edit system with 8 one-click presets (More Anthemic, First Person POV, Darker Mood, etc.) plus custom edit prompts. Generate 3 variations in parallel. Like/Dislike feedback loop.</div>
+
+  <div class="item"><span class="label">Import Lyrics:</span> Full import system for external lyrics with title, genre, topic metadata and automated analysis — unlocks all production tools for any content.</div>
+</div>
+
+<!-- ═══════════ 5. REVENUE MODEL ═══════════ -->
+<div class="section" id="s5">
+  <h1 class="section-title">5. Revenue Model & Pricing Strategy</h1>
+  <div class="section-divider"></div>
+
+  <p>SONIQ implements a proven freemium-to-subscription model, mirroring the strategy that drove Suno to $200M in annual recurring revenue:</p>
+
+  <table>
+    <thead>
+      <tr><th>Tier</th><th>Price</th><th>Key Features</th><th>Target User</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Guest</td><td><strong>Free</strong></td><td>3 songs/hour, local storage, basic genres</td><td>Casual explorers</td></tr>
+      <tr><td>Free (Signed In)</td><td><strong>$0</strong></td><td>5 songs/month, cloud sync, all 23 genres</td><td>Hobbyists</td></tr>
+      <tr><td><strong class="amber">Pro</strong></td><td><strong class="amber">$9/mo</strong></td><td>Unlimited songs, Rap Lab, Advanced Settings, all tools</td><td>Indie artists, creators</td></tr>
+      <tr><td><strong class="cyan">Studio</strong></td><td><strong class="cyan">$19/mo</strong></td><td>+ Campaign Mode, Album Engine, Priority generation</td><td>Producers, serious artists</td></tr>
+      <tr><td><strong class="violet">Professional</strong> (Proposed)</td><td><strong class="violet">$39/mo</strong></td><td>+ API access, Batch export, Team seats, White-label</td><td>Labels, agencies, studios</td></tr>
+    </tbody>
+  </table>
+
+  <p>The addition of Campaign Mode and Album Engine justifies a higher-priced Professional tier. These are workflow tools that replace hours of creative director time — the value proposition supports $39–49/mo pricing for professional users.</p>
+
+  <h2 class="sub-title">5.1 Revenue Projections (Revised — March 2026 Update)</h2>
+  <p>With the expanded feature set and higher-tier pricing potential, projections are revised upward. The Campaign Mode and Album Engine increase average revenue per user by attracting professional subscribers to higher tiers. Based on Suno's trajectory and SaaS benchmarks (3–5% conversion, 6% monthly churn for sticky creative tools):</p>
+
+  <table>
+    <thead>
+      <tr><th>Metric</th><th>Year 1</th><th>Year 2</th><th>Year 3</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Monthly Active Users</td><td><strong>15,000</strong></td><td><strong>100,000</strong></td><td><strong>400,000</strong></td></tr>
+      <tr><td>Paid Subscribers (4% conv.)</td><td>600</td><td>4,000</td><td>16,000</td></tr>
+      <tr><td>Avg. Revenue Per User</td><td>$14/mo</td><td>$17/mo</td><td>$19/mo</td></tr>
+      <tr><td>Annual Recurring Revenue</td><td><strong class="green">$100.8K</strong></td><td><strong class="green">$816K</strong></td><td><strong class="green">$3.6M</strong></td></tr>
+      <tr><td>Gross Margin (est.)</td><td>~75%</td><td>~82%</td><td>~87%</td></tr>
+    </tbody>
+  </table>
+
+  <p><strong>Why the numbers moved up:</strong> The Pro tier ($9) captures hobbyists, but Campaign Mode and Album Engine pull professional users into the $19–39/mo tiers, lifting ARPU from $11 to $14–19. Feature depth also lowers churn (more invested users = stickier product), improving conversion from 3% to 4%.</p>
+</div>
+
+<!-- ═══════════ 6. TECHNICAL ARCHITECTURE ═══════════ -->
+<div class="section" id="s6">
+  <h1 class="section-title">6. Technical Architecture & Moat</h1>
+  <div class="section-divider"></div>
+
+  <p>SONIQ's architecture is purpose-built for rapid scaling with minimal infrastructure cost. This capital efficiency is a key competitive advantage.</p>
+
+  <div class="item cyan-item"><span class="label">Frontend:</span> Single-page app served from Vercel's global CDN. Zero build step, instant deploys, edge-cached worldwide. The entire UI — all 23 genres, Rap Lab, Campaign Mode, Album Engine, blending engine, prompt builder, library, and editor — runs client-side with zero framework overhead.</div>
+
+  <div class="item cyan-item"><span class="label">API Layer:</span> Three Vercel serverless functions handle all backend logic: generate.js (AI proxy with auth + rate limiting), auth.js (signup/login/sessions via Supabase JWT), and songs.js (cloud library CRUD). Cold starts under 200ms.</div>
+
+  <div class="item cyan-item"><span class="label">AI Engine:</span> Routes through OpenRouter to access Claude (Anthropic) for song generation. This architecture means SONIQ can hot-swap between any frontier LLM (GPT-4, Gemini, Llama, Mistral) without code changes. Zero model lock-in.</div>
+
+  <div class="item cyan-item"><span class="label">Database & Auth:</span> Supabase provides PostgreSQL database, JWT authentication, and row-level security. Usage metering tracks generations per user per billing period.</div>
+
+  <div class="item cyan-item"><span class="label">Security Model:</span> API keys never touch the browser. All AI requests are server-proxied with JWT verification. Rate limiting (10 requests/hour for anonymous users) prevents abuse.</div>
+
+  <h2 class="sub-title">6.1 Defensible Moat</h2>
+  <p>While SONIQ's technology stack uses commodity components, its moat comes from the intersection of several factors:</p>
+
+  <div class="bullet-list amber">
+    <div class="b">Prompt engineering IP: Proprietary system prompts across 23 genres, 21 structures, and 6 Rap Lab dimensions — representing months of iteration that would take any competitor significant time to replicate.</div>
+    <div class="b">Genre blending + Fusion Matrix: Dual-genre blending with adjustable ratios, 14 writing style overlays, and a predictive quality matrix — a unique product mechanic not found in any competitor.</div>
+    <div class="b">Campaign & Album tools: Professional workflow features (Campaign Mode, Album Engine) create a wedge into B2B that pure audio generators don't address.</div>
+    <div class="b">Suno/Udio integration layer: Bracket formatting, prompt builder with character counters, and platform-specific optimization make SONIQ the best front-end for platforms with 10M+ combined users.</div>
+    <div class="b">User data flywheel: As users build cloud libraries, campaigns, and album concepts, switching costs compound. Each saved project strengthens retention.</div>
+    <div class="b">Multi-model flexibility: The OpenRouter architecture means SONIQ always has access to the best available LLM without retraining or migration costs.</div>
+  </div>
+</div>
+
+<!-- ═══════════ 7. GROWTH STRATEGY ═══════════ -->
+<div class="section" id="s7">
+  <h1 class="section-title">7. Growth Strategy & Roadmap</h1>
+  <div class="section-divider"></div>
+
+  <h2 class="sub-title">7.0 Already Shipped (March 2026 Update)</h2>
+  <div class="bullet-list amber">
+    <div class="b"><strong>Campaign Mode</strong> — multi-song project generation with platform targeting (Suno/Udio) ✓</div>
+    <div class="b"><strong>Album Engine</strong> — full LP/EP planning with track maps, sonic palettes, visual direction ✓</div>
+    <div class="b"><strong>Rap Lab</strong> — 6-dimension rap fine-tuning (Flow, Rhyme, Density, Vocab, Persona) ✓</div>
+    <div class="b"><strong>Song Prompt Builder</strong> — visual Suno/Udio prompt builder with BPM, instruments, textures ✓</div>
+    <div class="b"><strong>Genre expansion to 23</strong> — Neo-Soul, Gospel, Children's, Comedy, Parody, TV/Musical ✓</div>
+    <div class="b"><strong>Advanced Settings</strong> — Era, Scale/Mode, Harmony Level, Hook Style, Artist Voice ✓</div>
+    <div class="b"><strong>Analysis Suite</strong> — Song Analyzer, Hit Formula, Genre Bible, Song Rating, Fusion Matrix ✓</div>
+    <div class="b"><strong>Voice Input & AI Rewrite</strong> — speak-to-create and AI concept sharpening ✓</div>
+    <div class="b"><strong>Quick Edit & Variations</strong> — instant edits + 3 parallel variations ✓</div>
+    <div class="b"><strong>Import Lyrics</strong> — bring external lyrics into SONIQ for analysis and production tooling ✓</div>
+  </div>
+
+  <h2 class="sub-title">7.1 Near-Term (0–6 Months)</h2>
+  <div class="bullet-list green">
+    <div class="b">Stripe integration for self-serve Pro/Studio/Professional subscriptions</div>
+    <div class="b">Audio preview: direct Suno/Udio API integration for one-click audio rendering of SONIQ songs</div>
+    <div class="b">SEO and content marketing targeting "AI songwriting" and "AI lyrics generator" keywords</div>
+    <div class="b">TikTok/YouTube creator partnerships — demo Campaign Mode for organic growth</div>
+    <div class="b">Mobile-responsive PWA for on-the-go songwriting</div>
+  </div>
+
+  <h2 class="sub-title">7.2 Mid-Term (6–18 Months)</h2>
+  <div class="bullet-list cyan">
+    <div class="b">Collaboration features: co-writing rooms, shared libraries, version history</div>
+    <div class="b">SONIQ API/SDK for third-party integrations (DAWs, video editors, social media tools)</div>
+    <div class="b">B2B/Enterprise tier for agencies, labels, and content studios with team management</div>
+    <div class="b">Expansion to non-English lyrics (Spanish, Portuguese, Korean, Japanese, Hindi)</div>
+    <div class="b">Marketplace for user-generated genre presets, style templates, and album frameworks</div>
+  </div>
+
+  <h2 class="sub-title">7.3 Long-Term (18–36 Months)</h2>
+  <div class="bullet-list violet">
+    <div class="b">Full audio generation integration (via partnerships or proprietary model)</div>
+    <div class="b">Music publishing and sync licensing platform built on SONIQ-generated content</div>
+    <div class="b">Artist training: personalized style models trained on individual catalogs</div>
+    <div class="b">Enterprise licensing for game studios, film production, and advertising agencies</div>
+  </div>
+</div>
+
+<!-- ═══════════ 8. RISK FACTORS ═══════════ -->
+<div class="section" id="s8">
+  <h1 class="section-title">8. Risk Factors</h1>
+  <div class="section-divider"></div>
+
+  <div class="callout">
+    <div class="callout-title red">LLM Dependency</div>
+    <p>SONIQ relies on third-party LLMs (currently Claude via OpenRouter). Pricing changes or API deprecation could impact margins.</p>
+    <p><strong class="green">MITIGANT:</strong> OpenRouter abstraction allows instant model switching. Multiple competitive LLMs ensure supply.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-title red">Competitive Pressure</div>
+    <p>Well-funded competitors (Suno at $2.45B) could expand into the songwriting layer.</p>
+    <p><strong class="green">MITIGANT:</strong> Suno's focus is audio generation, a fundamentally different technical challenge. SONIQ's songwriting focus is complementary, not competitive.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-title red">Copyright Uncertainty</div>
+    <p>The legal landscape for AI-generated content is still evolving.</p>
+    <p><strong class="green">MITIGANT:</strong> SONIQ generates original text (lyrics), which faces far less legal risk than audio models trained on copyrighted recordings. No training data litigation exposure.</p>
+  </div>
+
+  <div class="callout">
+    <div class="callout-title red">Market Education</div>
+    <p>Users may not distinguish between "AI songwriting" and "AI music generation."</p>
+    <p><strong class="green">MITIGANT:</strong> Integration partnerships with audio platforms can position SONIQ as the creative layer on top of audio generation.</p>
+  </div>
+</div>
+
+<!-- ═══════════ 9. VALUATION FRAMEWORK ═══════════ -->
+<div class="section" id="s9">
+  <h1 class="section-title">9. Valuation Framework</h1>
+  <div class="section-divider"></div>
+
+  <p>Given the early stage of SONIQ, we present a valuation framework based on comparable transactions and forward-looking revenue multiples in the AI/SaaS space:</p>
+
+  <h2 class="sub-title">9.1 Comparable Transactions</h2>
+
+  <table>
+    <thead>
+      <tr><th>Company</th><th>Stage</th><th>Valuation</th><th>Revenue Multiple</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Suno (Nov 2025)</td><td>Series C</td><td><strong>$2.45B</strong></td><td>~12x ARR</td></tr>
+      <tr><td>Boomy</td><td>Seed/A</td><td><strong>~$50–80M (est.)</strong></td><td>N/A (pre-revenue)</td></tr>
+      <tr><td>AIVA</td><td>Private</td><td><strong>Undisclosed</strong></td><td>N/A</td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="sub-title">9.2 SONIQ Valuation Scenarios</h2>
+  <p>Applying industry-standard SaaS multiples (10–15x forward ARR for high-growth AI companies) to SONIQ's projected revenue trajectories:</p>
+
+  <table>
+    <thead>
+      <tr><th>Scenario</th><th>Year 3 ARR</th><th>Multiple</th><th>Implied Valuation</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Conservative</td><td>$3.6M</td><td>10x</td><td><strong>$36M</strong></td></tr>
+      <tr><td>Base Case</td><td>$6M</td><td>12x</td><td><strong class="green">$72M</strong></td></tr>
+      <tr><td>Upside</td><td>$12M</td><td>15x</td><td><strong class="amber">$180M</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="scenario-row">
+    <div class="scenario">
+      <div class="scenario-name">Conservative</div>
+      <div class="scenario-val" style="color:var(--tx2)">$36M</div>
+      <div class="scenario-detail">$3.6M ARR &times; 10x</div>
+    </div>
+    <div class="scenario" style="border-color:var(--green)">
+      <div class="scenario-name">Base Case</div>
+      <div class="scenario-val green">$72M</div>
+      <div class="scenario-detail">$6M ARR &times; 12x</div>
+    </div>
+    <div class="scenario" style="border-color:var(--amber)">
+      <div class="scenario-name">Upside</div>
+      <div class="scenario-val amber">$180M</div>
+      <div class="scenario-detail">$12M ARR &times; 15x</div>
+    </div>
+  </div>
+
+  <p><strong>What changed from previous estimate:</strong> The March 2026 product updates (Campaign Mode, Album Engine, Rap Lab, 23 genres, Professional tier potential) raised the Year 3 ARR projection from $1.4M to $3.6M in the conservative case. Higher ARPU from professional-tier features and lower churn from deeper product investment drive the increase. The base and upside cases assume successful B2B penetration with the Campaign and Album tools.</p>
+</div>
+
+<!-- ═══════════ 10. CONCLUSION ═══════════ -->
+<div class="section" id="s10">
+  <h1 class="section-title">10. Conclusion & Investment Thesis</h1>
+  <div class="section-divider"></div>
+
+  <p>SONIQ represents a compelling opportunity in one of the fastest-growing segments of the AI market. The investment thesis rests on five pillars:</p>
+
+  <div class="item"><span class="label">Massive, validated market:</span> Suno's $2.45B valuation and $200M ARR prove that consumers will pay for AI music creation. The broader market is projected to grow at 28–30% CAGR through 2034.</div>
+
+  <div class="item"><span class="label">Differentiated positioning:</span> SONIQ owns the songwriting layer, not the audio layer. This means zero copyright lawsuits, zero GPU costs, and a product that is complementary to every audio generation platform.</div>
+
+  <div class="item"><span class="label">Capital-efficient business model:</span> Serverless architecture with ~80%+ gross margins. No model training costs. Every dollar invested goes into product and growth.</div>
+
+  <div class="item"><span class="label">Deepest product in the market:</span> v12 ships 23 genres, 21 structures, 25 vocal styles, Rap Lab, Campaign Mode, Album Engine, Prompt Builder, Fusion Matrix, Song Scoring, and a complete auth/metering system. This is not a prototype — it is a working creative suite with more songwriting features than any competitor, including those valued at $2B+.</div>
+
+  <div class="item"><span class="label">Multiple paths to scale:</span> Stripe monetization is scoped. Campaign Mode and Album Engine open B2B revenue (agencies, labels, studios). Suno bracket formatting and Prompt Builder create a natural integration bridge to platforms with 10M+ users. API/SDK enables third-party distribution.</div>
+</div>
+
+<!-- ═══════════ CLOSING ═══════════ -->
+<div class="closing">
+  <div class="closing-main">SONIQ is building the creative intelligence layer for the AI music revolution.</div>
+  <div class="closing-sub">The question is not whether AI will transform songwriting — it already has. The question is who will own the platform where it happens.</div>
+</div>
+
+<div class="disclaimer">
+  DISCLAIMER: This document is provided for informational purposes only and does not constitute financial advice, an offer to sell, or a solicitation to buy any securities. All projections are forward-looking estimates based on current market data and comparable company analysis. Actual results may differ materially. Market data sourced from Market.us, Grand View Research, MRFR, TechCrunch, and public filings as of March 2026.
+</div>
+
+</body>
+</html>

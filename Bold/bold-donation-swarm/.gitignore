@@ -1,0 +1,8 @@
+.env
+*.log
+node_modules/
+.DS_Store
+
+# Track output directories but not their generated contents
+outputs/**/*
+!outputs/**/.gitkeep

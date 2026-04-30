@@ -1,0 +1,24 @@
+User-agent: *
+Allow: /
+Disallow: /404.html
+
+Sitemap: https://profaedixon.com/sitemap.xml
+
+# AI Crawler Access
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Anthropic-AI
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Bingbot
+Allow: /

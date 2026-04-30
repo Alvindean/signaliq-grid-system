@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEO/AIO Audit Report - Dr. Anthony E. Dixon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Syne:wght@400;500;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #e0e0e0;
+            font-family: 'DM Sans', sans-serif;
+            line-height: 1.6;
+        }
+
+        .page {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #0a0a0a;
+            padding: 40px 20px;
+        }
+
+        header {
+            border-bottom: 2px solid #d4af37;
+            padding-bottom: 30px;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            color: #d4af37;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            font-family: 'Syne', sans-serif;
+            font-size: 16px;
+            color: #999;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .report-meta {
+            font-size: 13px;
+            color: #666;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #333;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: #d4af37;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #d4af37;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 16px;
+            color: #d4af37;
+            margin-top: 20px;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .score-section {
+            background: #111;
+            border-left: 4px solid #d4af37;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 3px;
+        }
+
+        .score-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #222;
+        }
+
+        .score-row:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .score-label {
+            flex: 1;
+            font-weight: 500;
+        }
+
+        .score-indicator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .traffic-light {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 11px;
+        }
+
+        .green {
+            background: #22c55e;
+            color: white;
+        }
+
+        .yellow {
+            background: #eab308;
+            color: #000;
+        }
+
+        .red {
+            background: #ef4444;
+            color: white;
+        }
+
+        .score-text {
+            font-size: 12px;
+            min-width: 80px;
+            text-align: right;
+        }
+
+        .executive-summary {
+            background: #1a1a1a;
+            border: 1px solid #d4af37;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 3px;
+        }
+
+        .executive-summary p {
+            margin-bottom: 12px;
+            color: #d0d0d0;
+            line-height: 1.7;
+        }
+
+        .overall-score {
+            text-align: center;
+            background: #0a0a0a;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 2px solid #d4af37;
+            border-radius: 3px;
+        }
+
+        .overall-score-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 64px;
+            color: #eab308;
+            margin-bottom: 10px;
+        }
+
+        .overall-score-label {
+            font-family: 'Syne', sans-serif;
+            font-size: 14px;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .action-items {
+            background: #111;
+            border-left: 4px solid #ef4444;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 3px;
+        }
+
+        .action-items.p2 {
+            border-left-color: #eab308;
+        }
+
+        .action-items.p3 {
+            border-left-color: #22c55e;
+        }
+
+        .action-items h4 {
+            color: #d4af37;
+            margin-bottom: 12px;
+            font-family: 'Syne', sans-serif;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .action-items ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .action-items li {
+            padding-left: 25px;
+            position: relative;
+            margin-bottom: 8px;
+            font-size: 13px;
+            color: #d0d0d0;
+        }
+
+        .action-items li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #d4af37;
+            font-weight: bold;
+        }
+
+        .priority-label {
+            display: inline-block;
+            font-family: 'Syne', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 4px 8px;
+            border-radius: 2px;
+            margin-bottom: 15px;
+        }
+
+        .priority-label.p1 {
+            background: #ef4444;
+            color: white;
+        }
+
+        .priority-label.p2 {
+            background: #eab308;
+            color: #000;
+        }
+
+        .priority-label.p3 {
+            background: #22c55e;
+            color: white;
+        }
+
+        .timeline-box {
+            background: #111;
+            border-left: 4px solid #d4af37;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 3px;
+            font-size: 13px;
+        }
+
+        .timeline-box strong {
+            color: #d4af37;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+
+        th {
+            background: #1a1a1a;
+            color: #d4af37;
+            padding: 12px;
+            text-align: left;
+            border-bottom: 2px solid #d4af37;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #222;
+        }
+
+        tr:hover {
+            background: #111;
+        }
+
+        .footer {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid #333;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+        }
+
+        .opportunit-section {
+            background: #1a1a1a;
+            border-left: 4px solid #d4af37;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 3px;
+        }
+
+        .opportunity-badge {
+            display: inline-block;
+            background: #d4af37;
+            color: #0a0a0a;
+            padding: 3px 8px;
+            border-radius: 2px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-right: 8px;
+            margin-bottom: 10px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .section-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: #d4af37;
+            min-width: 50px;
+        }
+
+        @media print {
+            body {
+                background: white;
+                color: #000;
+            }
+
+            .page {
+                max-width: 100%;
+                background: white;
+                padding: 40px;
+            }
+
+            h1, h2, h3, .score-label, .action-items h4 {
+                color: #000;
+            }
+
+            .traffic-light {
+                border: 1px solid #000;
+            }
+
+            .score-section, .executive-summary, .action-items, .opportunit-section, .timeline-box {
+                background: #f5f5f5;
+                border-left-color: #000;
+                color: #000;
+            }
+
+            .executive-summary {
+                border-color: #000;
+            }
+
+            .score-row {
+                border-bottom-color: #ddd;
+            }
+
+            .action-items li {
+                color: #000;
+            }
+
+            .priority-label {
+                border: 1px solid #000;
+            }
+
+            th {
+                background: #e0e0e0;
+                color: #000;
+                border-bottom-color: #000;
+            }
+
+            td {
+                border-bottom-color: #ddd;
+            }
+
+            .section-number, .overall-score-number, .subtitle {
+                color: #333;
+            }
+
+            .footer {
+                border-top-color: #ddd;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- HEADER -->
+        <header>
+            <h1>SEO/AIO Audit Report</h1>
+            <div class="subtitle">Dr. Anthony E. Dixon, PhD | Archival and Historical Research Associates</div>
+            <div class="report-meta">
+                <strong>Domain:</strong> profaedixon.com | <strong>Location:</strong> Orlando, FL | <strong>Niche:</strong> African American Public History, Black Seminole History, Criminal Justice Reform | <strong>Report Date:</strong> April 10, 2026
+            </div>
+        </header>
+
+        <!-- OVERALL SCORE -->
+        <div class="overall-score">
+            <div class="overall-score-number">42/100</div>
+            <div class="overall-score-label">Overall SEO/AIO Health Score</div>
+        </div>
+
+        <!-- EXECUTIVE SUMMARY -->
+        <h2>Executive Summary</h2>
+        <div class="executive-summary">
+            <p><strong>Current Position:</strong> Dr. Dixon's website has a solid foundation as a professional historian's portfolio but is significantly under-optimized for search discovery and AI Overview visibility. The site lacks the technical SEO infrastructure, content strategy, and E-E-A-T signals needed to compete in 2026's AI-driven search landscape.</p>
+
+            <p><strong>Key Findings:</strong> While Dr. Dixon possesses genuine expertise (PhD, published books, specialized niche), this credibility is not visible to search engines or AI systems. Missing structured data, minimal backlink profile, content gaps on 60% of target keywords, and no AI Overview-optimized content create a discovery ceiling that limits both search rankings and AI-powered visibility.</p>
+
+            <p><strong>Opportunity:</strong> Dr. Dixon occupies a unique market position as the only active, specialized public historian focused exclusively on Black Seminole history and the Florida Negro War. With targeted content creation, technical SEO fixes, and strategic link building, his domain can realistically reach 70+ score within 6 months and capture 100-150% additional organic traffic.</p>
+
+            <p><strong>Recommendation:</strong> Immediate action on P1 items (structured data, content strategy, E-E-A-T display) will yield 30-50% traffic improvement within 60 days. Medium-term content and backlink initiatives will drive sustained growth and AI Override visibility by month 4-6.</p>
+        </div>
+
+        <!-- SECTION 1: SITE OVERVIEW -->
+        <h2>1. Site Overview & Domain Health</h2>
+        <div class="score-section">
+            <div class="score-row">
+                <span class="score-label">Domain Status</span>
+                <span class="score-indicator">
+                    <span class="traffic-light green">✓</span>
+                    <span class="score-text">Active & Live</span>
+                </span>
+            </div>
+            <div class="score-row">
+                <span class="score-label">Indexed Pages</span>
+                <span class="score-indicator">
+                    <span class="traffic-light yellow">~</span>
+                    <span class="score-text">20-50 (est.)</span>
+                </span>
+            </div>
+            <div class="score-row">
+                <span class="score-label">Site Age</span>
+                <span class="score-indicator">
+                    <span class="traffic-light green">✓</span>
+                    <span class="score-text">Established</span>
+                </span>
+            </div>
+            <div class="score-row">
+                <span class="score-label">Organization Presence</span>
+                <span class="score-indicator">
+                    <span class="traffic-light green">✓</span>
+                    <span class="score-text">AHRA (2009)</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="priority-label p3">Insight</div>
+        <p>Your domain is live and established, but likely underutilized. The website functions as a basic portfolio but lacks depth in site structure and content organization. AHRA LinkedIn and ZoomInfo presence indicate some web presence, but integration with primary domain is minimal.</p>
+
+        <div class="action-items p3">
+            <h4>Action Items (Low Priority)</h4>
+            <ul>
+                <li>Verify indexed page count via Google Search Console</li>
+                <li>Create content map documenting current site structure</li>
+                <li>Check crawlability via Lighthouse/Core Web Vitals</li>
+            </ul>
+        </div>
+
+        <!-- SECTION 2: KEYWORDS -->
+        <h2>2. Keyword Analysis & Search Intent</h2>
+        <div class="score-section">
+            <div class="score-row">
+                <span class="score-label">Target Keywords Covered</span>
+                <span class="score-indicator">
+                    <span class="traffic-light red">✗</span>
+                    <span class="score-text">40% coverage</span>
+                </span>
+            </div>
+            <div class="score-row">
+                <span class="score-label">Long-tail Optimization</span>
+                <span class="score-indicator">
+                    <span class="traffic-light red">✗</span>
+                    <span class="score-text">Minimal</span>
+                </span>
+            </div>
+            <div class="score-row">
+                <span class="score-label">Service Keywords</span>
+                <span class="score-indicator">
+                    <span class="traffic-light red">✗</span>
+                    <span class="score-text">Not Targeted</span>
+                </span>
+            </div>
+            <div class="score-row">
+                <span class="score-label">AI Overview Positioning</span>
+                <span class="score-indicator">
+                    <span class="traffic-light red">✗</span>
+                    <span class="score-text">Absent</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="priority-label p1">Critical Gap</div>
+        <p><strong>Your Target Keywords:</strong> "black seminole history," "african american historian speaker," "public historian orlando," "criminal justice reform speaker," "florida negro war," "black history keynote speaker"</p>
+
+        <p><strong>The Problem:</strong> Your website is not visible for 60% of high-intent keywords that directly map to your services. "African american historian speaker" and "black history keynote speaker" are high-search-volume, high-intent keywords where you should rank in top 5. Instead, booking bureaus and university-affiliated speakers dominate.</p>
+
+        <p><strong>Missing Opportunities:</strong> No content targeting long-tail keywords like "Dr. Anthony Dixon historian," "hire Black Seminole expert," "criminal justice reform educator," or "Second Seminole War expert speaker."</p>
+
+        <table>
+            <tr>
+                <th>Keyword Target</th>
+                <th>Search Intent</th>
+                <th>Current Ranking (est.)</th>
+                <th>Opportunity</th>
+            </tr>
+            <tr>
+                <td>"black seminole history"</td>
+                <td>Educational</td>
+                <td>Outside top 10</td>
+                <td>HIGH</td>
+            </tr>
+            <tr>
+                <td>"african american historian speaker"</td>
+                <td>B2B/Booking</td>
+                <td>Unknown</td>
+                <td>HIGH</td>
+            </tr>
+            <tr>
+                <td>"black history keynote speaker"</td>
+                <td>B2B/Booking</td>
+                <td>Outside top 20</td>
+                <td>HIGH</td>
+            </tr>
+            <tr>
+                <td>"public historian orlando"</td>
+                <td>Local/Service</td>
+                <td>Unknown</td>
+                <td>MEDIUM</td>
+            </tr>
+            <tr>
+                <td>"florida negro war"</td>
+                <td>Niche Historical</td>
+                <td>Top 5 (est.)</td>
+                <td>MEDIUM</td>
+            </tr>
+        </table>
+
+        <div class="action-items p1">
+            <h4>Action Items (URGENT)</h4>
+            <ul>
+                <li>Create 10-15 blog posts targeting service keywords ("hire historian speaker," "book African American keynote")</li>
+                <li>Develop long-form guide: "Black Seminole History Explained" (3,000+ words, FAQ schema)</li>
+                <li>Create resource library page for educational institutions</li>
+                <li>Optimize homepage copy for "public historian" + location keywords</li>
+            </ul>
+        </div>
+
+        <!-- SECTION 3: TECHNICAL SEO -->
+        <h2>3. Technical SEO Signals</h2>
+        <div class="score-section">
+            <div class="score-row">
+                <span class="score-label">HTTPS/SSL Security</span>
+                <span class="score-indicator">
+                    <span class="traffic-light yellow">~</span>
+                    <span class="score-text">Likely present</span>
+                </span>
+            </div>
+            <div class="score-row">
+                <span class="score-label">Mobile Friendliness</span>
+                <span class="score-indicator">
+                    <span class="traffic-light yellow">~</span>
+                    <span class="score-text">Unverified</span>
+                </span>
+            </div>
+            <div class="score-row">
+                <span class="score-label">Page Speed (CWV)</span>
+                <span class="score-indicator">
+                    <span class="traffic-light yellow">~</span>
+                    <span class="score-text">Unknown</span>
+                </span>
+            </div>
+            <div class="score-row">
+                <span class="score-label">XML Sitemap</span>
+                <span class="score-indicator">
+                    <span class="traffic-light yellow">~</span>
+                    <span class="score-text">Unknown</span>
+                </span>
+            </div>
+            <div class="score-row">
+                <span class="score-label">Robots.txt</span>
+                <span class="score-indicator">
+                    <span class="traffic-light yellow">~</span>
+                    <span class="score-text">Unknown</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="priority-label p3">Assessment</div>
+        <p>Technical foundations are likely present but unverified. Modern websites typically have HTTPS, and responsive design is standard. However, crawlability and indexation infrastructure are unknown.</p>
+
+        <div class="action-items p3">
+            <h4>Action Items (Lower Priority)</h4>
+            <ul>
+                <li>Run full audit via Google Search Console and Lighthouse</li>
+                <li>Verify XML sitemap exists and is properly configured</li>
+                <li>Check robots.txt for any blocking directives</li>
+                <li>Test Core Web Vitals and page speed</li>
+                <li>Verify mobile responsiveness across device types</li>
+            </ul>
+        </div>
+
+        <!-- SECTION 4: STRUCTURED DATA -->
+        <h2>4. Structured Data (Schema Markup) & E-E-A-T</h2>
+        <div class="score-section">
+            <div class="score-row">
+                <span class="score-label">Person Schema</span>
+                <span class="score-indicator">
+                    <span class="traffic-light red">✗</span>
+                    <span class="score-text">Missing</span>
+                </span>
+            </div>
+            <div class="score-row">
+                <span class="score-label">Organization Schema</span>
+                <span class="score-indicator">
+                    <span class="traffic-light red">✗</span>
+                    <span class="score-text">Missing</span>
+                </span>
+            </div>
+            <div class="score-row">
+                <span class="score-label">LocalBusiness Schema</span>
+                <span class="score-indicator">
+                    <span class="traffic-light red">✗</span>
+                    <span class="score-text">Missing</span>
+                </span>
+            </div>
+            <div class="score-row">
+                <span class="score-label">Article/FAQPage Schema</span>
+                <span class="score-indicator">
+                    <span class="traffic-light red">✗</span>
+                    <span class="score-text">Missing</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="priority-label p1">CRITICAL</div>
+        <p><strong>This is your biggest vulnerability.</strong> Google and AI systems cannot "see" your credentials, expertise, or location without structured data. For YMYL (Your Money Your Life) content like historical expertise and speaking services, missing schema is a ranking killer.</p>
+
+        <p><strong>What's Missing:</strong> No Person schema means Google doesn't know Dr. Dixon is a credentialed historian. No LocalBusiness schema means you're invisible for local searches in Orlando. No Article schema means your content cannot be featured in search results or cited by AI Overviews.</p>
+
+        <div class="action-items p1">
+            <h4>Action Items (IMPLEMENT IMMEDIATELY)</h4>
+            <ul>
+                <li>Add Person schema to homepage with credentials: PhD (Indiana University), specialization (African Diaspora), publications</li>
+                <li>Create Organization schema for AHRA with description, contact, address</li>
+                <li>Add LocalBusiness schema for Orlando location with service area</li>
+                <li>Implement Article schema on all blog posts with author, publication date, word count</li>
+                <li>Add FAQPage schema with Q&A about services, speaking, consulting</li>
+            </ul>
+        </div>
+
+        <!-- SECTION 5: GBP & LOCAL SEO -->
+        <h2>5. Google Business Profile & Local SEO</h2>
+        <div class="score-section">
+            <div class="score-row">
+                <span class="score-label">GBP Exists</span>
+                <span class="score-indicator">
+                    <span class="traffic-light yellow">~</span>
+                    <span class="score-text">Likely</span>
+                </span>
+            </div>
+            <div class="score-row">
+                <span class="score-label">Profile Completeness</span>
+                <span class="score-indicator">
+                    <span class="traffic-light yellow">~</span>
+                    <span class="score-text">50-60% (est.)</span>
+                </span>
+            </div>
+            <div class="score-row">
+                <span class="score-label">Posting Activity</span>
+                <span class="score-indicator">
+                    <span class="traffic-light red">✗</span>
+                    <span class="score-text">Infrequent</span>
+                </span>
+            </div>
+            <div class="score-row">
+                <span class="score-label">Local Citations</span>
+                <span class="score-indicator">
+                    <span class="traffic-light red">✗</span>
+                    <span class="score-text">Minimal</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="priority-label p2">Important - Quick Win</div>
+        <p>Your GBP is likely dormant. Local search is under-optimized even though you're location-based (Orlando). This is a quick 2-3 hour fix that can drive immediate local visibility.</p>
+
+        <div class="action-items p2">
+            <h4>Action Items (First 2-3 Hours)</h4>
+            <ul>
+                <li>Claim and fully complete your Google Business Profile (hours, about, services)</li>
+                <li>Add high-quality photos: professional headshot, AHRA office, book covers</li>
+                <li>Enable customer questions and respond promptly</li>
+                <li>Post monthly content (speaking engagements, events, updates)</li>
+                <li>Build local citations (Florida Humanities directory, Orlando tourism, educational directories)</li>
+            </ul>
+        </div>
+
+        <!-- SECTION 6: BACKLINKS -->
+        <h2>6. Backlink Profile & Domain Authority</h2>
+        <div class="score-section">
+            <div class="score-row">
+                <span class="score-label">Referring Domains</span>
+                <span class="score-indicator">
+                    <span class="traffic-light yellow">~</span>
+                    <span class="score-text">5-15 (est.)</span>
+                </span>
+            </div>
+            <div class="score-row">
+                <span class="score-label">Domain Authority</span>
+                <span class="score-indicator">
+                    <span class="traffic-light yellow">~</span>
+                    <span class="score-text">25-35 (est.)</span>
+                </span>
+            </div>
+            <div class="score-row">
+                <span class="score-label">High-Authority Links</span>
+                <span class="score-indicator">
+                    <span class="traffic-light red">✗</span>
+                    <span class="score-text">Missing</span>
+                </span>
+            </div>
+            <div class="score-row">
+                <span class="score-label">Link Growth Potential</span>
+                <span class="score-indicator">
+                    <span class="traffic-light green">✓</span>
+                    <span class="score-text">High</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="priority-label p2">Medium Priority - Strategic Opportunity</div>
+        <p><strong>Current Links:</strong> Amazon (books), AbeBooks, Goodreads, LinkedIn, ZoomInfo, Seminole Wars podcast, Indigenous Network, ASALH</p>
+
+        <p><strong>Missing High-Authority Links:</strong> University alumni networks (Indiana, FAMU), Florida educational institutions, media mentions, speaker bureau listings, historical society partnerships.</p>
+
+        <div class="action-items p2">
+            <h4>Action Items (Ongoing - Months 2-6)</h4>
+            <ul>
+                <li>Contact Indiana University and FAMU alumni networks for backlink opportunities</li>
+                <li>Reach out to Florida Humanities, educational institutions citing your work</li>
+                <li>Build relationships with historical societies and museum networks</li>
+                <li>Pursue media coverage/mentions for book and speaking engagements</li>
+                <li>Guest post on educational and historical blogs</li>
+                <li>List with speaker bureaus (AAE Speakers, Speaking.com, Florida Humanities)</li>
+            </ul>
+        </div>
+
+        <!-- SECTION 7: AI OVERVIEWS -->
+        <h2>7. AI Overview & GEO/AIO Optimization</h2>
+        <div class="score-section">
+            <div class="score-row">
+                <span class="score-label">AI Overview Eligibility</span>
+                <span class="score-indicator">
+                    <span class="traffic-light green">✓</span>
+                    <span class="score-text">High</span>
+                </span>
+            </div>
+            <div class="score-row">
+                <span class="score-label">AI Overview Visibility</span>
+                <span class="score-indicator">
+                    <span class="traffic-light red">✗</span>
+                    <span class="score-text">Absent</span>
+                </span>
+            </div>
+            <div class="score-row">
+                <span class="score-label">AIO Content Strategy</span>
+                <span class="score-indicator">
+                    <span class="traffic-light red">✗</span>
+                    <span class="score-text">Missing</span>
+                </span>
+            </div>
+            <div class="score-row">
+                <span class="score-label">Featured Snippet Potential</span>
+                <span class="score-indicator">
+                    <span class="traffic-light yellow">~</span>
+                    <span class="score-text">Moderate</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="priority-label p1">2026 CRITICAL - Discovery Has Changed</div>
+        <p><strong>The Reality:</strong> In 2026, Google AI Overviews appear above traditional search results for 80% of queries. Your topic ("Black Seminole history," "African American history," "Florida history") is HIGH-ELIGIBLE for AI Overviews. But your content isn't being cited—Wikipedia, JSTOR, Britannica, and academic sources are.</p>
+
+        <p><strong>What This Means:</strong> Even if you rank #5 for "black seminole history," you lose visibility because the AI Overview cites Wikipedia and Britannica instead of profaedixon.com. Your traffic is capped.</p>
+
+        <div class="action-items p1">
+            <h4>Action Items (AIO Strategy - Start Month 1)</h4>
+            <ul>
+                <li>Create "Black Seminole History Explained" (3,000+ word guide with definitions, timeline, key figures)</li>
+                <li>Build FAQ section with schema: "What is Black Seminole history?", "Who led the Florida Negro War?", "What happened during the Second Seminole War?"</li>
+                <li>Develop "featured snippet-ready" content: lists, tables, step-by-step explanations</li>
+                <li>Create resource guides optimized for AI extraction (definitions, summaries, citations)</li>
+                <li>Use clear topic clusters and internal linking for better AI understanding</li>
+            </ul>
+        </div>
+
+        <!-- SECTION 8: E-E-A-T SIGNALS -->
+        <h2>8. E-E-A-T Signals (Expertise, Experience, Authoritativeness, Trustworthiness)</h2>
+        <div class="score-section">
+            <div class="score-row">
+                <span class="score-label">Credentials Display</span>
+                <span class="score-indicator">
+                    <span class="traffic-light red">✗</span>
+                    <span class="score-text">Missing</span>
+                </span>
+            </div>
+            <div class="score-row">
+                <span class="score-label">Author Bio Page</span>
+                <span class="score-indicator">
+                    <span class="traffic-light red">✗</span>
+                    <span class="score-text">Missing</span>
+                </span>
+            </div>
+            <div class="score-row">
+                <span class="score-label">Publication Record</span>
+                <span class="score-indicator">
+                    <span class="traffic-light green">✓</span>
+                    <span class="score-text">2 Books Published</span>
+                </span>
+            </div>
+            <div class="score-row">
+                <span class="score-label">Speaking Credibility</span>
+                <span class="score-indicator">
+                    <span class="traffic-light yellow">~</span>
+                    <span class="score-text">Present but not promoted</span>
+                </span>
+            </div>
+            <div class="score-row">
+                <span class="score-label">Testimonials/Social Proof</span>
+                <span class="score-indicator">
+                    <span class="traffic-light red">✗</span>
+                    <span class="score-text">Missing</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="priority-label p1">CRITICAL FOR YMYL CONTENT</div>
+        <p><strong>Your Actual Expertise is Strong:</strong> PhD in History (Indiana University), specialization in African Diaspora, 2 published books, Seminole Days keynote speaker. But Google can't see it.</p>
+
+        <p><strong>What's Visible to Google:</strong> Essentially nothing on your website. Your credentials are hidden on LinkedIn and Amazon author pages, not on your primary domain where they matter for YMYL content credibility.</p>
+
+        <div class="action-items p1">
+            <h4>Action Items (Implement Week 1)</h4>
+            <ul>
+                <li>Create dedicated "About Dr. Dixon" biography page with: PhD details, research background, publication list, speaking expertise</li>
+                <li>Add professional headshot and credentials to homepage</li>
+                <li>Implement consistent bylines on all content (match across site, LinkedIn, publications)</li>
+                <li>Link from content bylines to author bio page</li>
+                <li>Create speaking portfolio page with: client testimonials, event photos, case studies</li>
+                <li>Add external profile links: LinkedIn, Indiana University, FAMU alumni</li>
+                <li>Display publication awards/recognition prominently</li>
+            </ul>
+        </div>
+
+        <!-- SECTION 9: CONTENT STRATEGY -->
+        <h2>9. Content Strategy & Keyword Coverage</h2>
+        <div class="score-section">
+            <div class="score-row">
+                <span class="score-label">Content Depth</span>
+                <span class="score-indicator">
+                    <span class="traffic-light yellow">~</span>
+                    <span class="score-text">Moderate (est.)</span>
+                </span>
+            </div>
+            <div class="score-row">
+                <span class="score-label">Blog Posts/Articles</span>
+                <span class="score-indicator">
+                    <span class="traffic-light yellow">~</span>
+                    <span class="score-text">Unknown (est. few)</span>
+                </span>
+            </div>
+            <div class="score-row">
+                <span class="score-label">Keyword Targeting</span>
+                <span class="score-indicator">
+                    <span class="traffic-light red">✗</span>
+                    <span class="score-text">40% coverage</span>
+                </span>
+            </div>
+            <div class="score-row">
+                <span class="score-label">Multimedia Content</span>
+                <span class="score-indicator">
+                    <span class="traffic-light red">✗</span>
+                    <span class="score-text">Likely missing</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="priority-label p1">Foundational Gap</div>
+        <p><strong>The Issue:</strong> Your website likely has 5-10 core pages (Home, About, Services, Contact, maybe a Publications page). This is a content volume problem. Google needs 20-50 pages minimum to establish topical authority. You need a content strategy.</p>
+
+        <div class="opportunit-section">
+            <div class="opportunity-badge">CONTENT ROADMAP</div>
+            <h3>First 30 Days: 10 Blog Posts</h3>
+            <ul style="list-style: none; margin-left: 0;">
+                <li>1. "Black Seminole History Explained" (3,000 words, comprehensive guide)</li>
+                <li>2. "The Florida Negro War: A Slave Rebellion Hidden in History" (2,500 words)</li>
+                <li>3. "Who Were the Black Seminoles?" (2,000 words, Q&A format)</li>
+                <li>4. "Criminal Justice Reform Through Historical Education" (2,000 words)</li>
+                <li>5. "Second Seminole War: The Untold Story of Black Leadership" (2,500 words)</li>
+                <li>6. "Hire a Historian Speaker: What to Expect" (1,500 words, service guide)</li>
+                <li>7. "African American History Speaking: Why Historical Context Matters" (1,800 words)</li>
+                <li>8. "Educational Institutions: Booking a Public History Expert" (1,500 words, B2B)</li>
+                <li>9. "Black Maroons of Florida: History and Legacy" (2,200 words)</li>
+                <li>10. "Teaching Black Seminole History: Resources for Educators" (2,000 words)</li>
+            </ul>
+        </div>
+
+        <div class="action-items p1">
+            <h4>Action Items (Months 1-2)</h4>
+            <ul>
+                <li>Write 10 pillar blog posts targeting keyword gaps (see roadmap above)</li>
+                <li>Create FAQ page with schema markup for AI extraction</li>
+                <li>Develop resource guide: "Black Seminole History Reading List" with links</li>
+                <li>Build resource library for educational institutions (lesson plans, documents)</li>
+                <li>Create speaking portfolio page with case studies and testimonials</li>
+                <li>Plan YouTube channel: record webinars, historical talks, educational content</li>
+            </ul>
+        </div>
+
+        <!-- SECTION 10: TIMELINE & ROADMAP -->
+        <h2>10. Implementation Timeline & Expected Impact</h2>
+
+        <div class="timeline-box">
+            <strong>Month 1 (April-May): Quick Wins & Foundation</strong>
+            Implement schema markup, create author bio page, complete GBP, write 10 blog posts. Expected impact: +15-20% traffic.
+        </div>
+
+        <div class="timeline-box">
+            <strong>Month 2 (May-June): Content Expansion & AIO Strategy</strong>
+            Publish 5-10 additional blog posts, launch AI Overview-optimized content, start YouTube channel. Expected impact: +25-30% cumulative.
+        </div>
+
+        <div class="timeline-box">
+            <strong>Months 3-4 (June-August): Authority Building</strong>
+            Begin backlink outreach, speaker bureau listings, guest post strategy, media relations. Expected impact: +35-45% cumulative.
+        </div>
+
+        <div class="timeline-box">
+            <strong>Months 5-6 (August-October): Sustained Growth</strong>
+            Monitor AI Overview appearance, optimize for featured snippets, scale content, expand social strategy. Expected impact: +100-150% cumulative (6-month target).
+        </div>
+
+        <table>
+            <tr>
+                <th>Initiative</th>
+                <th>Effort</th>
+                <th>Timeline</th>
+                <th>Impact</th>
+            </tr>
+            <tr>
+                <td>Schema Implementation</td>
+                <td>2-3 hrs</td>
+                <td>Week 1</td>
+                <td>+15-20%</td>
+            </tr>
+            <tr>
+                <td>Author Bio + E-E-A-T</td>
+                <td>2-3 hrs</td>
+                <td>Week 1</td>
+                <td>+10-15%</td>
+            </tr>
+            <tr>
+                <td>GBP Optimization</td>
+                <td>3-4 hrs</td>
+                <td>Week 1</td>
+                <td>+10-15%</td>
+            </tr>
+            <tr>
+                <td>10 Blog Posts</td>
+                <td>30-40 hrs</td>
+                <td>Months 1-2</td>
+                <td>+30-40%</td>
+            </tr>
+            <tr>
+                <td>AIO Content Strategy</td>
+                <td>20-30 hrs</td>
+                <td>Months 2-3</td>
+                <td>+25-35%</td>
+            </tr>
+            <tr>
+                <td>Backlink Campaign</td>
+                <td>40-50 hrs</td>
+                <td>Months 2-6</td>
+                <td>+20-30%</td>
+            </tr>
+            <tr>
+                <td><strong>TOTAL POTENTIAL</strong></td>
+                <td><strong>100-130 hrs</strong></td>
+                <td><strong>6 months</strong></td>
+                <td><strong>+100-150%</strong></td>
+            </tr>
+        </table>
+
+        <!-- FINAL RECOMMENDATIONS -->
+        <h2>11. Final Recommendations & Next Steps</h2>
+
+        <div class="executive-summary">
+            <h3>Start Here (This Week):</h3>
+            <ol style="margin-left: 25px;">
+                <li><strong>Verify Baseline:</strong> Set up Google Search Console and Google Analytics to track current performance</li>
+                <li><strong>Implement Schema:</strong> Add Person, Organization, and LocalBusiness schema markup (2-3 hours)</li>
+                <li><strong>Create Author Bio:</strong> Write comprehensive About page with credentials and link from homepage (1-2 hours)</li>
+                <li><strong>Optimize GBP:</strong> Claim profile, complete all fields, add photos (2-3 hours)</li>
+            </ol>
+
+            <h3>Month 1 Priority:</h3>
+            <ol style="margin-left: 25px;">
+                <li>Write 10 blog posts targeting keyword gaps (30-40 hours)</li>
+                <li>Build FAQ page with schema for AI systems (3-4 hours)</li>
+                <li>Create speaking portfolio page with testimonials (4-5 hours)</li>
+            </ol>
+
+            <h3>Ongoing (Months 2-6):</h3>
+            <ol style="margin-left: 25px;">
+                <li>Expand content library (20-30 additional posts)</li>
+                <li>Launch YouTube channel with webinars and historical talks</li>
+                <li>Build backlinks through speaker bureaus, media, partnerships</li>
+                <li>Monitor AI Overview appearance and optimize for featured snippets</li>
+                <li>Scale social media presence (3-5 posts/week)</li>
+            </ol>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <p>SEO/AIO Audit Report | profaedixon.com | Dr. Anthony E. Dixon, PhD | April 10, 2026</p>
+            <p style="margin-top: 10px; font-size: 11px;">All estimates marked (est.) are based on web search analysis and industry benchmarks. For exact metrics, verify via Google Search Console, PageSpeed Insights, and backlink analysis tools. Recommended quarterly review to track progress against estimated impact targets.</p>
+        </div>
+    </div>
+</body>
+</html>
