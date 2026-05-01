@@ -1588,9 +1588,12 @@ export default function App() {
         {tab === 'agents' && (
           <section className="grid">
             <article className="card">
-              <h3>15-Agent Minimum Cycle</h3>
+              <h3>Pre-Launch Readiness Cycle</h3>
               <p className="hint">
-                Requirement: run all 15 agents, all 5 auditors pass, and at least 12/15 total pass before campaign launch.
+                15 framework-aligned readiness checks across Email Intelligence, StoryBrand, Hormozi Offer, VOC Personalization, and Market Compliance. Pass at least 12/15 with all 5 audits clean before launching a campaign.
+              </p>
+              <p className="hint" style={{ opacity: 0.7, fontSize: '0.85em' }}>
+                Most checks are framework-based scaffolding. <strong>Email Intelligence (Persuasion)</strong> upgrades to real Claude-powered analysis once a campaign with subject/body content exists and <code>ANTHROPIC_API_KEY</code> is configured server-side.
               </p>
               <div className="grid cards3">
                 <div>

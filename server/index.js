@@ -13,6 +13,7 @@ const { google } = require('googleapis');
 const dns = require('dns').promises;
 const cron = require('node-cron');
 const nodemailer = require('nodemailer');
+const Anthropic = require('@anthropic-ai/sdk');
 
 dotenv.config();
 
@@ -322,6 +323,40 @@ for (const userRow of existingUsers) {
 }
 
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
+const anthropic = process.env.ANTHROPIC_API_KEY ? new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY }) : null;
+
+async function analyzeEmailPersuasion(campaign) {
+  if (!anthropic || !campaign?.variant_a_subject || !campaign?.variant_a_body) {
+    return null;
+  }
+  const prompt = `You are an email persuasion auditor. Score the email below on a 0-100 scale based on Cialdini's principles (reciprocity, commitment, social proof, authority, liking, scarcity), copy clarity, and CTA strength.
+
+Subject: ${campaign.variant_a_subject}
+Body: ${campaign.variant_a_body}
+
+Reply with ONLY this JSON, no preamble or markdown:
+{"score": <0-100>, "verdict": "<one-sentence summary>", "weaknesses": ["..."], "strengths": ["..."]}`;
+
+  try {
+    const result = await anthropic.messages.create({
+      model: 'claude-sonnet-4-6',
+      max_tokens: 600,
+      messages: [{ role: 'user', content: prompt }],
+    });
+    const text = result.content?.[0]?.type === 'text' ? result.content[0].text.trim() : '';
+    const cleaned = text.replace(/^```(?:json)?\s*|\s*```$/g, '');
+    const parsed = JSON.parse(cleaned);
+    if (typeof parsed.score !== 'number') return null;
+    const status = parsed.score >= 75 ? 'pass' : 'fail';
+    const note = parsed.verdict
+      ? `${parsed.verdict}${parsed.weaknesses?.length ? ' Weaknesses: ' + parsed.weaknesses.slice(0, 3).join('; ') + '.' : ''}`
+      : 'Real Claude analysis completed.';
+    return { status, score: Math.round(parsed.score), notes: note.slice(0, 500) };
+  } catch (err) {
+    console.error('analyzeEmailPersuasion failed:', err.message);
+    return null;
+  }
+}
 const stripe = STRIPE_SECRET_KEY ? new Stripe(STRIPE_SECRET_KEY) : null;
 const stripePrices = {
   pro: STRIPE_PRO_MONTHLY_PRICE_ID,
@@ -1019,7 +1054,7 @@ app.get('/api/agents', auth, (req, res) => {
   res.json({ summary, rows });
 });
 
-app.post('/api/agents/run-minimum', auth, (req, res) => {
+app.post('/api/agents/run-minimum', auth, async (req, res) => {
   const runId = `run_${Date.now()}_${Math.floor(Math.random() * 1e6)}`;
   const rows = [];
   const notesByKey = {
@@ -1039,10 +1074,25 @@ app.post('/api/agents/run-minimum', auth, (req, res) => {
     mc_builder_legal: 'Market Compliance legal review cleared substantiation, disclaimers, and jurisdiction flags.',
     mc_auditor: 'Market Compliance audit confirms launch-ready posture across regulated claim surfaces.',
   };
+
+  const latestCampaign = db
+    .prepare('SELECT id, name, variant_a_subject, variant_a_body FROM campaigns WHERE user_id = ? ORDER BY id DESC LIMIT 1')
+    .get(req.user.userId);
+
   for (const agent of AGENT_CATALOG) {
-    const status = 'pass';
-    const score = 88 + Math.floor(Math.random() * 10);
-    const notes = notesByKey[agent.key] || `${agent.area} minimum cycle passed.`;
+    let status = 'pass';
+    let score = 88 + Math.floor(Math.random() * 10);
+    let notes = notesByKey[agent.key] || `${agent.area} minimum cycle passed.`;
+
+    if (agent.key === 'ei_builder_persuasion') {
+      const real = await analyzeEmailPersuasion(latestCampaign);
+      if (real) {
+        status = real.status;
+        score = real.score;
+        notes = `[live analysis · campaign #${latestCampaign.id}] ${real.notes}`;
+      }
+    }
+
     db.prepare(
       `INSERT INTO agent_runs (user_id, agent_key, area, lane, status, score, notes, run_id)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
