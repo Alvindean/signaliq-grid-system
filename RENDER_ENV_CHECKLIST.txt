@@ -21,7 +21,7 @@ CAMPAIGN_REPLY_TO=thealvindean@gmail.com
 SENDING_FROM=SignalIQ <onboarding@resend.dev>
 
 Required for conversion tracking:
-CRM_WEBHOOK_KEY=crm_wh_a83efeda1510d56cba
+CRM_WEBHOOK_KEY=<generate fresh random value, set in Render env vars only>
 
 Required for Google Workspace:
 GOOGLE_CLIENT_ID=<your Google client id>
